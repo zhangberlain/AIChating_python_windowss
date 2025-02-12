@@ -9,7 +9,7 @@ import threading
 def main():
     global root
     root = tkinter.Tk()
-    root.title(string= "this is title")
+    root.title(string= "哇,是AI,我们有救了")
     root.geometry(newGeometry="800x600+500+50")
     root.resizable(width=True,height=True)
     root.config(bg = "white")
@@ -72,6 +72,18 @@ def main():
 
     frame_1001.pack(pady= 5)
     #Frame1结束
+    #frame1.5启动
+    frame_10015 = tkinter.Frame(root)
+    label_1005 = tkinter.Label(frame_10015,text=r"请将'钥匙'/api_key粘贴进灰色框")
+    label_1005.pack(side=tkinter.LEFT,padx=1,pady=1)
+
+    global api_keyyyyy
+    api_keyyyyy = tkinter.StringVar()
+    entry_1002 = tkinter.Entry(frame_10015, bg= 'gray',textvariable=api_keyyyyy,show='**')
+    entry_1002.pack(side=tkinter.RIGHT,padx=1)
+    frame_10015.pack()
+
+    #frame1.5结束
     #frame2启动
     frame_1002 = tkinter.Frame(root)
     global text_1001
@@ -89,6 +101,7 @@ def main():
 
 def click1001():
     print('what can i say?')
+    print(api_keyyyyy.get(),type(api_keyyyyy))
     return 0
 
 def send_1001(text = None):
@@ -113,7 +126,7 @@ def shuaxinText():
 
 def sedToAI(text1):
     #插入root中
-    response =  api_serve(text1)
+    response =  api_serve(text1,api_keyyy=api_keyyyyy.get())
     root.after(0, update_response, response)
     return 0
 
@@ -123,8 +136,14 @@ def update_response(response):
     text_1001.insert(tkinter.END, "AI: " + response + "\n\n")  # 插入AI的响应
     text_1001.see(tkinter.END)  # 滚动到底部
     return 0
+
+
 if __name__ == '__main__':
     main()
 
 
-    '''todu:1.上下文功能,2. apikey输入才能使用,不要写死,3.'''
+    '''
+        todo:1.上下文功能,
+            2.背景设定,
+            3.输出结果日志,
+    '''
