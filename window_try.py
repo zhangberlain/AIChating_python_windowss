@@ -3,7 +3,9 @@ import tkinter
 from PIL import Image , ImageTk
 import tkinter.test
 from image_input import image_input
-from api_test import *
+from api_test_WithoutHistory import *
+from api_test_withHistory import *
+
 import threading
 
 def main():
@@ -72,24 +74,37 @@ def main():
 
     frame_1001.pack(pady= 5)
     #Frame1结束
-    #frame1.5启动
-    frame_10015 = tkinter.Frame(root)
-    label_1005 = tkinter.Label(frame_10015,text=r"请将'钥匙'/api_key粘贴进灰色框")
+
+    #frame1.1启动
+    frame_10011 = tkinter.Frame(root)
+    label_1005 = tkinter.Label(frame_10011,text=r"请将'钥匙'/api_key粘贴进灰色框")
     label_1005.pack(side=tkinter.LEFT,padx=1,pady=1)
 
     global api_keyyyyy
     api_keyyyyy = tkinter.StringVar()
-    entry_1002 = tkinter.Entry(frame_10015, bg= 'gray',textvariable=api_keyyyyy,show='**')
+    entry_1002 = tkinter.Entry(frame_10011, bg= 'gray',textvariable=api_keyyyyy,show='**')
     entry_1002.pack(side=tkinter.RIGHT,padx=1)
-    frame_10015.pack()
+    frame_10011.pack()
+    #frame1.1结束
+    global historyOrNot
+    historyOrNot = tkinter.IntVar()#默认不需要上下文
+    historyOrNot.set(0)
+    #frame1.2启动
+    frame_10012 = tkinter.Frame(root)
+    bottom_1003 = tkinter.Radiobutton(frame_10012,text="需要上下文",variable=historyOrNot, value=1)
+    bottom_1004 = tkinter.Radiobutton(frame_10012,text="不需要上下文", variable=historyOrNot, value=0  )
+    bottom_1003.pack(side=tkinter.LEFT)
+    bottom_1004.pack(side=tkinter.RIGHT)
+    frame_10012.pack()
+    #frame1.2结束
 
-    #frame1.5结束
+
     #frame2启动
     frame_1002 = tkinter.Frame(root)
     global text_1001
     text_1001 = tkinter.Text(frame_1002,width=80,height = 300)
     text_1001.pack(pady=10)
-    text_1001.insert("1.0",'{user},您好,这是调用qwen的ai助手,请在上面输入框中输入问题\n\n'.format(user = "用户"))
+    text_1001.insert("1.0",'{user},您好,这是调用qwen的ai助手,请在上面白色输入框中输入问题\n\n'.format(user = "用户"))
 
     scrolllbar_1001 = tkinter.Scrollbar(frame_1002)
     scrolllbar_1001.pack(side=tkinter.RIGHT, fill=tkinter.Y)
@@ -101,7 +116,7 @@ def main():
 
 def click1001():
     print('what can i say?')
-    print(api_keyyyyy.get(),type(api_keyyyyy))
+    print(api_keyyyyy.get())
     return 0
 
 def send_1001(text = None):
@@ -126,7 +141,10 @@ def shuaxinText():
 
 def sedToAI(text1):
     #插入root中
-    response =  api_serve(text1,api_keyyy=api_keyyyyy.get())
+    if historyOrNot.get() == 0:
+        response =  api_serve_withoutHistory(text1,api_keyyy=api_keyyyyy.get())
+    elif historyOrNot.get() == 1:
+        response =  api_serve_withHistory(text1,api_keyyy=api_keyyyyy.get())
     root.after(0, update_response, response)
     return 0
 
@@ -138,6 +156,7 @@ def update_response(response):
     return 0
 
 
+
 if __name__ == '__main__':
     main()
 
@@ -146,4 +165,6 @@ if __name__ == '__main__':
         todo:1.上下文功能,
             2.背景设定,
             3.输出结果日志,
+            4.流式交互功能,
+            5.
     '''
