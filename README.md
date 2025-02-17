@@ -3,6 +3,9 @@
 
 ##本项目已停止更新,原因:及时重写了代码,避免后续无法增加功能,提升了扩展性,后续项目在
 
+https://github.com/zhangberlain/AIhelper_rebuild
+
+
 ## 已实现的功能:
 >1.实现了基于python tkinter的win图形界面的文字输入
 
