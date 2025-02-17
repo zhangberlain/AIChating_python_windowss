@@ -5,6 +5,7 @@
 
 https://github.com/zhangberlain/AIhelper_rebuild
 
+项目内图片来自网络
 
 ## 已实现的功能:
 >1.实现了基于python tkinter的win图形界面的文字输入
