@@ -1,5 +1,6 @@
 # -*- coding:'utf-8' -*-
 import tkinter
+from tkinter import ttk
 from PIL import Image , ImageTk
 import tkinter.test
 from image_input import image_input
@@ -15,29 +16,7 @@ def main():
     root.geometry(newGeometry="800x600+500+50")
     root.resizable(width=True,height=True)
     root.config(bg = "white")
-    '''
-    label_1001 = tkinter.Label(
-        root,
-        text="this is Label",
-        relief= 'groove',
-        bg= 'light green',
-        bd = 3,anchor='nw'
-        )
-    label_1001.anchor('nw')
-    label_1001.pack(pady= 20)
-    #tkinter.mainloop()
-    label_1001.config(text="this is new label")
-    label_1001.pack()
 
-
-    s_words_1002 = 'this is changable words'
-    label_1002 = tkinter.Label(root, text = s_words_1002, font= ('黑体',20 ))
-    label_1002.pack()
-
-    label_1003 = tkinter.Label(root, text= 'what can i say, man!', anchor='w', height= 2, fg='green', bg = 'light green', width= 50)
-    label_1003.pack()
-
-    '''
     image1001,width1001,height1001 = image_input(r'.\photos\1012.png')
     max_width = 150
     max_height = 200
@@ -163,8 +142,9 @@ if __name__ == '__main__':
 
     '''
         todo:1.上下文功能,
-            2.背景设定,
+            2.背景设定,各类参数调节
             3.输出结果日志,
             4.流式交互功能,
-            5.
+            5.图片输入功能
+            6.移植安卓
     '''

@@ -12,7 +12,7 @@ def api_serve_withoutHistory(str_content,api_keyyy,str_backaround = 'You are a h
         )
 
         completion = client.chat.completions.create(
-            model="qwen2.5-1.5b-instruct",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
+            model="qwen-max",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
             messages=[
                 {'role': 'system', 'content': str2},
                 {'role': 'user', 'content': str1},
